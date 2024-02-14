@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top fw-semibold">
+  <div class="container">
+    <a class="navbar-brand">
+      <img src="../../assets/images/freshcart-logo.svg">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngClass]="{'justify-content-between': isLoggedIn, 'justify-content-end': !isLoggedIn}"
+      class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="brands">Brands</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cart">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="categories">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="products">Products</a>
+        </li>
+      </ul>
+
+
+      <div class="d-flex gap-3 align-items-center">
+        <a href="#" target="_blank" class="fa-brands fa-instagram text-decoration-none text-dark"></a>
+        <a href="#" target="_blank" class="fa-brands fa-facebook text-decoration-none text-dark"></a>
+        <a href="#" target="_blank" class="fa-brands fa-tiktok text-decoration-none text-dark"></a>
+        <a href="#" target="_blank" class="fa-brands fa-twitter text-decoration-none text-dark"></a>
+        <a href="#" target="_blank" class="fa-brands fa-linkedin text-decoration-none text-dark"></a>
+        <a href="#" target="_blank" class="fa-brands fa-youtube text-decoration-none text-dark"></a>
+        <a *ngIf="!isLoggedIn" class="nav-link" routerLink="login">Login</a>
+        <a *ngIf="!isLoggedIn" class="nav-link" routerLink="register">Register</a>
+        <a *ngIf="isLoggedIn" (click)="logout()" class="nav-link cursor-pointer">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,70 @@
+<section class="mt-5 py-5">
+    <div class="container">
+        <h2>Register now:</h2>
+        <form (ngSubmit)="registerSubmit(registerForm)" [formGroup]="registerForm">
+            <div class="row g-3">
+                <div>
+                    <label class="form-label">Name:</label>
+                    <input formControlName="name" placeholder="Enter your Name" type="text" class="form-control">
+                    <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched"
+                        class="alert alert-info text-danger mt-1">
+                        <p *ngIf="registerForm.get('name')?.errors?.['required']">Name is required</p>
+                        <p *ngIf="registerForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters
+                        </p>
+                        <p *ngIf="registerForm.get('name')?.errors?.['maxlength']">Name must be maximum 32 characters
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Phone:</label>
+                    <input formControlName="phone" placeholder="Enter your Phone number" type="tel"
+                        class="form-control">
+                    <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched"
+                        class="alert alert-info text-danger mt-1">
+                        <p *ngIf="registerForm.get('phone')?.errors?.['required']">Phone number is required</p>
+                        <p *ngIf="registerForm.get('phone')?.errors?.['pattern']">Please enter a valid phone</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Email:</label>
+                    <input formControlName="email" placeholder="Enter your Email address" type="email"
+                        class="form-control">
+                    <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched"
+                        class="alert alert-info text-danger mt-1">
+                        <p *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</p>
+                        <p *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Password:</label>
+                    <input formControlName="password" placeholder="Enter your Password" type="password"
+                        class="form-control">
+                    <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
+                        class="alert alert-info text-danger mt-1">
+                        <p *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</p>
+                        <p *ngIf="registerForm.get('password')?.errors?.['pattern'] != null">Password must start with a capital
+                            letter and minimum of 6 characters</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Confirm Password</label>
+                    <input formControlName="rePassword" placeholder="Confirm your Password" type="password"
+                        class="form-control">
+                    <div *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched"
+                        class="alert alert-info text-danger mt-1">
+                        <p *ngIf="registerForm.get('rePassword')?.errors?.['required']">Confirm password is required</p>
+                        <p *ngIf="registerForm.get('rePassword')?.errors?.['pattern']">Password doesn't match</p>
+                    </div>
+                </div>
+                <div>
+                    <div *ngIf="errorMessage" class="alert alert-info text-danger mt-1 fs-1 fw-bold text-center">
+                        {{errorMessage}}</div>
+                </div>
+                <div>
+                    <button [disabled]="registerForm.invalid" type="submit"
+                        class="d-block ms-auto btn-main">Register<i *ngIf="registerButtonLoader" class="fa-brands fa-instalod fa-beat-fade ms-2"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

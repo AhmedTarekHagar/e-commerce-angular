@@ -1,1 +1,43 @@
-<p>products works!</p>
+<div class="row gx-2 g-2 mt-3">
+
+  <div *ngIf="loadingFlag; else content" class="row">
+
+    <div *ngFor="let i of placeHolderIterations" class="card col-md-2 py-5" aria-hidden="true">
+
+      <div class="text-center">
+        <i class="fa-solid fa-circle-notch fs-1 fa-spin text-main"></i>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h5>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <ng-template #content>
+    <div class="col-md-2" *ngFor="let product of allProducts">
+      <div class="product bg-body-tertiary p-1 pb-0 cursor-pointer">
+        <div [routerLink]="['/productdetails',product._id]">
+          <img [src]="product.imageCover" [alt]="product.description" class="w-100">
+          <h5 class="font-sm text-main mt-2">{{product.category.name}}</h5>
+          <h2 class="h5 fw-bold">{{product.title.split(" ", 2).join(" ")}}</h2>
+          <div class="d-flex justify-content-between">
+            <span>{{product.price}} EGP</span>
+            <span><i class="fa-solid fa-star rating-color me-1"></i>{{product.ratingsAverage}}</span>
+          </div>
+        </div>
+        <button class="btn btn-main d-block w-100 mb-0">Add To Cart</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

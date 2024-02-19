@@ -1,0 +1,43 @@
+<h1 class="d-none">{{productData.description}}</h1>
+<div class="row my-5" *ngIf="productDetailsFlag">
+    <div class="col-md-3">
+        <owl-carousel-o [options]="productCarouselConfiguration">
+
+            <ng-container *ngFor="let imagePath of productData.images">
+                <ng-template carouselSlide >
+                    <img [src]="imagePath" [alt]="productData.description" [title]="productData.description">
+                </ng-template>
+            </ng-container>
+
+        </owl-carousel-o>
+    </div>
+    <div class="col-md-9 d-flex flex-column justify-content-center gap-3">
+        <h2 class="fw-bold">{{productData.title}}</h2>
+        <p class="text-muted fs-6 fw-semibold">{{productData.description}}</p>
+        <h5>{{productData.category.name}}</h5>
+        <div class="d-flex justify-content-between">
+            <span>{{productData.price}} EGP</span>
+            <span><i class="fa-solid fa-star rating-color me-1"></i>{{productData.ratingsAverage}}</span>
+        </div>
+        <button class="btn btn-main">Add to cart<i class="fa-solid fa-plus ms-2"></i></button>
+    </div>
+</div>
+
+<div *ngIf="!productDetailsFlag" class="card py-5 my-5 border-0" aria-hidden="true">
+    <div class="text-center">
+        <i class="fa-solid fa-spinner fa-spin fs-1"></i>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title placeholder-glow">
+            <span class="placeholder col-6"></span>
+        </h5>
+        <p class="card-text placeholder-glow">
+            <span class="placeholder col-7"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-6"></span>
+            <span class="placeholder col-8"></span>
+        </p>
+        <a class="btn btn-main placeholder col-6 d-block w-100" aria-disabled="true">Loading</a>
+    </div>
+</div>

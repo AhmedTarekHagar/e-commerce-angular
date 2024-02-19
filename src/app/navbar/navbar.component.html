@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top fw-semibold">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fw-semibold">
   <div class="container">
     <a class="navbar-brand">
-      <img src="../../assets/images/freshcart-logo.svg">
+      <img src="../../assets/images/freshcart-logo.svg" routerLink="home">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,19 +11,19 @@
       class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a class="nav-link" routerLink="home">Home</a>
+          <a class="nav-link px-0 mx-2" routerLink="home" routerLinkActive="active-component">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="brands">Brands</a>
+          <a class="nav-link px-0 mx-2" routerLink="brands" routerLinkActive="active-component">Brands</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="cart">Cart</a>
+          <a class="nav-link px-0 mx-2" routerLink="cart" routerLinkActive="active-component">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="categories">Categories</a>
+          <a class="nav-link px-0 mx-2" routerLink="categories" routerLinkActive="active-component">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="products">Products</a>
+          <a class="nav-link px-0 mx-2" routerLink="products" routerLinkActive="active-component">Products</a>
         </li>
       </ul>
 

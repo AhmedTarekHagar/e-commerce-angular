@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: "cart", canActivate: [routeGuardGuard], component: CartComponent, title: "Cart" },
   { path: "products", canActivate: [routeGuardGuard], component: ProductsComponent, title: "Products" },
   { path: "productdetails/:id", canActivate: [routeGuardGuard], component: ProductDetailsComponent },
+  { path: "settings", canActivate: [routeGuardGuard], loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
   { path: "timedout", canActivate: [routeGuardGuard], component: TimedOutComponent, title: "Connection Unstable" },
 
   { path: "**", canActivate: [routeGuardGuard], component: NotFoundComponent, title: "Content Not Found" }

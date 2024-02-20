@@ -14,13 +14,14 @@ import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { TimedOutComponent } from './timed-out/timed-out.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'
 import { RouterModule, Routes } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     NavbarComponent,
     FooterComponent,
     TimedOutComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HttpClientModule,
     RouterModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,35 @@
-<div class="row gx-2 g-2 mt-3">
+<!-- #region carousel -->
+<div class="row w-75 mx-auto mt-5">
+  <div class="col-md-9 mt-5">
+    <owl-carousel-o [options]="productsCarouselConfiguration">
+      <ng-template carouselSlide>
+        <img src="../../assets/images/slider-1.png">
+      </ng-template>
+      <ng-template carouselSlide>
+        <img src="../../assets/images/slider-2.jpeg">
+      </ng-template>
+      <ng-template carouselSlide>
+        <img src="../../assets/images/slider-3.jpeg">
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+  <div class="col-md-3">
+    <img src="../../assets/images/carousel up.jpg" class="w-100">
+    <img src="../../assets/images/carousel down.jpg" class="w-100">
+  </div>
+</div>
+<!-- #endregion -->
 
+<!-- search input -->
+<input [(ngModel)]="searchValue" type="text" placeholder="Search Products"
+  class="form-control w-50 focus-ring focus-ring-success mx-auto mt-5">
+
+<div class="row g-4 mt-3">
+
+  <!-- #region placeholder -->
   <div *ngIf="loadingFlag; else content" class="row">
 
-    <div *ngFor="let i of placeHolderIterations" class="card col-md-2 py-5" aria-hidden="true">
+    <div *ngFor="let i of placeHolderIterations" class="card col-md-3 py-5" aria-hidden="true">
 
       <div class="text-center">
         <i class="fa-solid fa-circle-notch fs-1 fa-spin text-main"></i>
@@ -23,9 +50,11 @@
     </div>
 
   </div>
+  <!-- #endregion -->
 
   <ng-template #content>
-    <div class="col-md-2" *ngFor="let product of allProducts">
+
+    <div class="col-md-3" *ngFor="let product of allProducts | search:searchValue">
       <div class="product bg-body-tertiary p-1 pb-0 cursor-pointer">
         <div [routerLink]="['/productdetails',product._id]">
           <img [src]="product.imageCover" [alt]="product.description" class="w-100">

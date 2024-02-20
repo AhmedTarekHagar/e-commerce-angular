@@ -38,6 +38,7 @@
         <a *ngIf="!isLoggedIn" class="nav-link" routerLink="login">Login</a>
         <a *ngIf="!isLoggedIn" class="nav-link" routerLink="register">Register</a>
         <a *ngIf="isLoggedIn" (click)="logout()" class="nav-link cursor-pointer">Logout</a>
+        <a routerLink="/settings" *ngIf="isLoggedIn" class="nav-link cursor-pointer">Settings</a>
       </div>
     </div>
   </div>

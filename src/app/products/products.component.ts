@@ -1,24 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../product';
-import { Router } from '@angular/router';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RequestsParametersService } from '../requests-parameters.service';
+
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
-  constructor(private _ProductsService: ProductsService, private _Router: Router) { }
+  constructor(private _ProductsService: ProductsService, private _Router: Router, private _ActivatedRoute: ActivatedRoute, private _RequestsParametersService: RequestsParametersService) { }
+  ngOnDestroy(): void {
+    this._RequestsParametersService.requestParamsArr.pop()
+  }
+
+  categoryValue: string | null = null;
 
   loadingFlag: boolean = true;
-  searchValue:string = ""; 
+  searchValue: string = "";
 
   placeHolderIterations: number[] = Array(24).fill(0);
 
   ngOnInit(): void {
     localStorage.setItem('lastPage', '/products')
+
+    this._ActivatedRoute.queryParams.subscribe({
+      next: ((p) => {
+        const queryString = Object.keys(p).map(key => {
+          return decodeURIComponent(key) + '=' + encodeURIComponent(p[key]);
+        }).join('&');
+        
+        this._RequestsParametersService.requestParamsArr.push(`${queryString}`);
+      })
+    })
 
     this._ProductsService.getAllProductsReq().subscribe({
       next: (res) => {
@@ -37,20 +54,6 @@ export class ProductsComponent implements OnInit {
 
   allProducts!: Product[];
 
-  productsCarouselConfiguration: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      }
-    },
-    nav: true
-  }
+
 
 }

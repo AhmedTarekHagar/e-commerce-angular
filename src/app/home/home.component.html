@@ -1,1 +1,38 @@
-<p>home works!</p>
+<!-- #region top carousel -->
+<div class="row w-75 mx-auto mt-5">
+  <div class="col-md-9 mt-5">
+    <owl-carousel-o [options]="homeTopCarouselConfiguration">
+      <ng-template carouselSlide>
+        <img src="../../assets/images/slider-1.png">
+      </ng-template>
+      <ng-template carouselSlide>
+        <img src="../../assets/images/slider-2.jpeg">
+      </ng-template>
+      <ng-template carouselSlide>
+        <img src="../../assets/images/slider-3.jpeg">
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+  <div class="col-md-3">
+    <img src="../../assets/images/carousel up.jpg" class="w-100">
+    <img src="../../assets/images/carousel down.jpg" class="w-100">
+  </div>
+</div>
+<!-- #endregion -->
+
+<!-- #region bottom carousel -->
+
+<owl-carousel-o [options]="homeBottomCarouselConfiguration">
+
+  <ng-container *ngFor="let category of categories">
+    <ng-template carouselSlide>
+      <img height="200" width="200" [src]="category.image" [alt]="category.name" [title]="category.name"
+        class="cursor-pointer" [routerLink]="['/category', category._id]">
+    </ng-template>
+  </ng-container>
+
+</owl-carousel-o>
+
+<!-- #endregion -->
+
+<app-products></app-products>

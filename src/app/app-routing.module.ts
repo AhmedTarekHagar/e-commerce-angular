@@ -8,8 +8,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsComponent } from './products/products.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { routeGuardGuard } from './route-guard.guard';
-import { lastPageGuard } from './last-page.guard';
+import { routeGuardGuard } from './guards/route-guard.guard';
+import { lastPageGuard } from './guards/last-page.guard';
 import { TimedOutComponent } from './timed-out/timed-out.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 

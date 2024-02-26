@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsService } from '../products.service';
-import { ProductDetails } from '../product-details';
+import { ProductsService } from '../services/products.service';
+import { ProductDetails } from '../interfaces/product-details';
 import { Title } from '@angular/platform-browser';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 

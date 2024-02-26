@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { CategoriesService } from '../categories.service';
+import { CategoriesService } from '../services/categories.service';
 import { Router } from '@angular/router';
-import { Category } from '../category';
+import { Category } from '../interfaces/category';
 
 @Component({
   selector: 'app-home',

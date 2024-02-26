@@ -1,0 +1,10 @@
+:host ::ng-deep {
+    &nav {
+        color: var(--main-color);
+        font-weight: bolder;
+    }
+    &.ngx-pagination .current {
+        background-color: var(--main-color);
+        border-radius: 5px;
+    }
+}

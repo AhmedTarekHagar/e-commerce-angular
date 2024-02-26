@@ -14,10 +14,10 @@ export class ProductsService {
 
   baseURL: string = `https://ecommerce.routemisr.com`;
 
-  getAllProductsReq(): Observable<any> {
+  getAllProductsReq(pageNumber:number = 1): Observable<any> {
     let query = this._RequestsParametersService.requestParamsArr.join('&');
     
-    return this._HttpClient.get(`${this.baseURL}/api/v1/products?${query}`);
+    return this._HttpClient.get(`${this.baseURL}/api/v1/products?page=${pageNumber}&${query}`);
   }
 
   getSpecificProduct(id: string): Observable<any> {

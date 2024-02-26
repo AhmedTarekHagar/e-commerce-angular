@@ -21,7 +21,8 @@ import { TimedOutComponent } from './timed-out/timed-out.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'
 import { RouterModule, Routes } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { SearchPipe } from './search.pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SearchPipe } from './search.pipe';
     RouterModule,
     BrowserAnimationsModule,
     CarouselModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

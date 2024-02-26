@@ -5,5 +5,12 @@ a {
 .active-component {
     border-bottom: 2px solid var(--main-color);
     color: #000;
-    
+}
+
+.cart-bg-main {
+    background-color: var(--main-color);
+}
+
+.cart-empty {
+    fill: #ccc;
 }

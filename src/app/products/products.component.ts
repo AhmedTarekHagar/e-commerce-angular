@@ -1,22 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProductsService } from '../products.service';
-import { Product } from '../product';
+import { ProductsService } from '../services/products.service';
+import { Product } from '../interfaces/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RequestsParametersService } from '../requests-parameters.service';
-
+import { RequestsParametersService } from '../services/requests-parameters.service';
+import { Metadata } from '../interfaces/metadata';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
 
   constructor(private _ProductsService: ProductsService, private _Router: Router, private _ActivatedRoute: ActivatedRoute, private _RequestsParametersService: RequestsParametersService) { }
-  ngOnDestroy(): void {
-    this._RequestsParametersService.requestParamsArr.pop()
-  }
-
+  
   categoryValue: string | null = null;
 
   loadingFlag: boolean = true;
@@ -32,14 +29,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
         const queryString = Object.keys(p).map(key => {
           return decodeURIComponent(key) + '=' + encodeURIComponent(p[key]);
         }).join('&');
-        
+
         this._RequestsParametersService.requestParamsArr.push(`${queryString}`);
+
       })
     })
 
-    this._ProductsService.getAllProductsReq().subscribe({
+    this.getProducts()
+  }
+
+  getProducts(pageNumber:number = 1) {
+    this._ProductsService.getAllProductsReq(pageNumber).subscribe({
       next: (res) => {
         this.allProducts = res.data;
+        this.paginationData = res.metadata;
+        this.productsCount = res.results;
       },
       error: (err) => {
         if (err) {
@@ -53,7 +57,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   allProducts!: Product[];
+  productsCount!:number;
+  paginationData!: Metadata;
 
-
-
+  pageChanged(event:number){
+    this.getProducts(event);
+  }
 }

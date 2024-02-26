@@ -1,4 +1,5 @@
 <section class="py-3">
+    <h2 class="text-main text-uppercase fw-bolder text-center my-3">all categories</h2>
     <div class="row g-3">
         <div class="col-md-3 cursor-pointer" *ngFor="let category of categories" [routerLink]="['/products']" [queryParams]="{'category[in]': category._id}">
             <div class="inner product">

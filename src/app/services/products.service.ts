@@ -17,7 +17,7 @@ export class ProductsService {
   getAllProductsReq(pageNumber:number = 1): Observable<any> {
     let query = this._RequestsParametersService.requestParamsArr.join('&');
     
-    return this._HttpClient.get(`${this.baseURL}/api/v1/products?page=${pageNumber}&${query}`);
+    return this._HttpClient.get(`${this.baseURL}/api/v1/products?limit=8&page=${pageNumber}&${query}`);
   }
 
   getSpecificProduct(id: string): Observable<any> {

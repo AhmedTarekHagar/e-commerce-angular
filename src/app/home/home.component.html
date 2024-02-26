@@ -1,5 +1,5 @@
 <!-- #region top carousel -->
-<div class="row w-75 mx-auto mt-5">
+<div class="row w-100 mx-auto mt-5 mb-3">
   <div class="col-md-9 mt-5">
     <owl-carousel-o [options]="homeTopCarouselConfiguration">
       <ng-template carouselSlide>
@@ -27,7 +27,7 @@
   <ng-container *ngFor="let category of categories">
     <ng-template carouselSlide>
       <img height="200" width="200" [src]="category.image" [alt]="category.name" [title]="category.name"
-        class="cursor-pointer" [routerLink]="['/category', category._id]">
+        class="cursor-pointer" [routerLink]="['/products']" [queryParams]="{'category[in]': category._id}">
     </ng-template>
   </ng-container>
 

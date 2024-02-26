@@ -3,7 +3,7 @@
     <a class="navbar-brand">
       <img src="../../assets/images/freshcart-logo.svg" routerLink="home">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <button class="navbar-toggler focus-ring focus-ring-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,7 +28,7 @@
       </ul>
 
 
-      <div class="d-flex gap-3 align-items-center">
+      <div class="d-flex gap-3 align-items-center cursor-pointer" routerLink="cart">
         <div>
           <img src="../../assets/images/cart.svg">
         </div>
@@ -41,7 +41,7 @@
         <a *ngIf="!isLoggedIn" class="nav-link" routerLink="login">Login</a>
         <a *ngIf="!isLoggedIn" class="nav-link" routerLink="register">Register</a>
         <a *ngIf="isLoggedIn" (click)="logout()" class="nav-link cursor-pointer">Logout</a>
-        <a routerLink="/settings" *ngIf="isLoggedIn" class="nav-link cursor-pointer">Settings</a>
+        <!-- <a routerLink="/settings" *ngIf="isLoggedIn" class="nav-link cursor-pointer">Settings</a> -->
       </div>
     </div>
   </div>

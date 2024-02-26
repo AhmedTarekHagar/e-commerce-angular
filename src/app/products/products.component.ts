@@ -13,7 +13,7 @@ import { Metadata } from '../interfaces/metadata';
 export class ProductsComponent implements OnInit {
 
   constructor(private _ProductsService: ProductsService, private _Router: Router, private _ActivatedRoute: ActivatedRoute, private _RequestsParametersService: RequestsParametersService) { }
-  
+
   categoryValue: string | null = null;
 
   loadingFlag: boolean = true;
@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.setItem('lastPage', '/products')
+    this._RequestsParametersService.requestParamsArr = [];
 
     this._ActivatedRoute.queryParams.subscribe({
       next: ((p) => {
@@ -38,7 +39,7 @@ export class ProductsComponent implements OnInit {
     this.getProducts()
   }
 
-  getProducts(pageNumber:number = 1) {
+  getProducts(pageNumber: number = 1) {
     this._ProductsService.getAllProductsReq(pageNumber).subscribe({
       next: (res) => {
         this.allProducts = res.data;
@@ -57,10 +58,10 @@ export class ProductsComponent implements OnInit {
   }
 
   allProducts!: Product[];
-  productsCount!:number;
+  productsCount!: number;
   paginationData!: Metadata;
 
-  pageChanged(event:number){
+  pageChanged(event: number) {
     this.getProducts(event);
   }
 }

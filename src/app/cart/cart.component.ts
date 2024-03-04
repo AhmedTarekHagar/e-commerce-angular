@@ -19,15 +19,17 @@ export class CartComponent implements OnInit {
 
     this._CartService.getLoggedUserAllCartItemsReq().subscribe({
       next: (res) => {
-        localStorage.setItem('userId', res.cartOwner);
+        localStorage.setItem('userId', res.data.cartOwner);
         this.cartItems = res.data.products;
         this.total = res.data.totalCartPrice;
+        this.cartId = res.data._id;
       }
     })
   }
 
   cartItems: CartItem[] = [];
   total!: number;
+  cartId!: string;
 
   // delete
   removeItem(productId: string) {
@@ -36,6 +38,7 @@ export class CartComponent implements OnInit {
         this._CartService.cartItemsCount.next(res.numOfCartItems);
         this._ToastEvokeService.success('Success', 'Item Removed from cart').subscribe();
         this.cartItems = res.data.products
+
       }
     })
   }
@@ -67,7 +70,7 @@ export class CartComponent implements OnInit {
       next: (res) => {
         this._ToastEvokeService.success('Success', 'Cart cleared').subscribe();
         this.cartItems = [];
-        this._CartService.cartItemsCount.next(0);
+        this._CartService.cartItemsCount.next(res.numOfCartItems);
       }
     })
   }

@@ -1,0 +1,17 @@
+<section>
+    <div class="row my-5 gx-5" *ngFor="let item of orders">
+        <div class="col-md-3">
+            <img [src]="" class="w-100">
+        </div>
+        <div class="col-md-7 d-flex justify-content-center flex-column gap-3 fw-bold">
+            <h2 class="h3 fw-bolder text-main">title</h2>
+            <span>category</span>
+            <span>brand</span>
+            <div class="d-flex justify-content-between">
+                <span>Price: </span>
+                <i class="fa-solid fa-star text-main">rating</i>
+            </div>
+        </div>
+        <hr class="text-main">
+    </div>
+</section>

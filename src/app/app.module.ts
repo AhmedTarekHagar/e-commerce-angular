@@ -16,7 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TimedOutComponent } from './timed-out/timed-out.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'
 import { RouterModule } from '@angular/router';
@@ -29,6 +29,9 @@ import {
   ConfirmBoxConfigModule,
   ToastNotificationConfigModule
 } from '@costlydeveloper/ngx-awesome-popup';
+import { AddHeaderInterceptor } from './interceptors/add-header.interceptor';
+import { PayComponent } from './pay/pay.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import {
     FooterComponent,
     TimedOutComponent,
     ProductDetailsComponent,
-    SearchPipe
+    SearchPipe,
+    PayComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,13 @@ import {
     ConfirmBoxConfigModule.forRoot(), // Needed for instantiating confirm boxes.
     ToastNotificationConfigModule.forRoot() // Needed for instantiating toast notifications.
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

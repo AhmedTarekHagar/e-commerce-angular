@@ -1,0 +1,18 @@
+<h2 class="h1 fw-bolder my-4">Shipping details:</h2>
+<form (ngSubmit)="addressForm(shippingAddress)" [formGroup]="shippingAddress" class="row gy-3">
+    <div>
+        <label class="form-label" for="address">Address details:</label>
+        <input class="form-control" type="text" id="address" formControlName="details">
+    </div>
+    <div>
+        <label class="form-label" for="phone">Phone number:</label>
+        <input class="form-control" type="text" id="phone" formControlName="phone">
+    </div>
+    <div>
+        <label class="form-label" for="city">City:</label>
+        <input class="form-control" type="text" id="city" formControlName="city">
+    </div>
+    <div class="my-3">
+        <button class="btn-main" type="submit">Proceed to pay</button>
+    </div>
+</form>

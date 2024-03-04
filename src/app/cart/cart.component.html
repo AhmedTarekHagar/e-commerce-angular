@@ -1,1 +1,39 @@
-<p>cart works!</p>
+<section>
+    <div *ngIf="cartItems.length != 0">
+        <div class="d-flex justify-content-between mt-5">
+            <p class="fw-bolder">Total: {{total | currency: "EGP "}}</p>
+            <button type="button" class="btn btn-main">Check out</button>
+        </div>
+        <div class="row my-5 gx-5" *ngFor="let item of cartItems">
+            <div class="col-md-3">
+                <img [src]="item.product.imageCover" class="w-100">
+            </div>
+            <div class="col-md-7 d-flex justify-content-center flex-column gap-3 fw-bold">
+                <h2 class="h3 fw-bolder text-main">{{item.product.title}}</h2>
+                <span>{{item.product.category.name}}</span>
+                <span>{{item.product.brand.name}}</span>
+                <div class="d-flex justify-content-between">
+                    <span>Price: {{item.price | currency: "EGP "}}</span>
+                    <i class="fa-solid fa-star text-main">{{item.product.ratingsAverage}}</i>
+                </div>
+                <i class="fa-solid fa-trash text-main cursor-pointer" (click)="removeItem(item.product._id)"></i>
+            </div>
+            <div class="col-md-2 d-flex justify-content-center align-items-center gap-3 text-main">
+                <i class="fa-solid fa-minus cursor-pointer"
+                    (click)="updateQuatity('decrement', item.product._id, item.count)"></i>
+                <span>{{item.count}}</span>
+                <i class="fa-solid fa-plus cursor-pointer"
+                    (click)="updateQuatity('increment', item.product._id, item.count)"></i>
+            </div>
+            <hr class="text-main">
+        </div>
+        <button type="button" class="btn-main d-block mx-auto px-3 py-2 mb-3" (click)="clearCart()">Clear Cart</button>
+    </div>
+
+    <div *ngIf="cartItems.length == 0">
+        <div class="container h1 text-main">
+            Cart Empty
+        </div>
+        <p class="text-main px-2 py-3 cursor-pointer" routerLink="/products">Go to Products</p>
+    </div>
+</section>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BrandsService } from '../services/brands.service';
 import { Router } from '@angular/router';
 import { Brand } from '../interfaces/brand';
+import { FilterService } from '../services/filter.service';
 
 @Component({
   selector: 'app-brands',
@@ -10,7 +11,7 @@ import { Brand } from '../interfaces/brand';
 })
 export class BrandsComponent implements OnInit {
 
-  constructor(private _BrandsService: BrandsService, private _Router: Router) { }
+  constructor(private _BrandsService: BrandsService, private _Router: Router, private _FilterService:FilterService) { }
 
   ngOnInit(): void {
     localStorage.setItem('lastPage', '/brands')
@@ -26,4 +27,8 @@ export class BrandsComponent implements OnInit {
   }
 
   brands!:Brand[];
+
+  setFilterValue(name: string): void {
+    this._FilterService.filterValue = name;
+  }
 }

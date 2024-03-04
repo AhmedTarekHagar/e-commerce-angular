@@ -14,9 +14,9 @@ export class ProductsService {
 
   baseURL: string = `https://ecommerce.routemisr.com`;
 
-  getAllProductsReq(pageNumber:number = 1): Observable<any> {
+  getAllProductsReq(pageNumber: number = 1): Observable<any> {
     let query = this._RequestsParametersService.requestParamsArr.join('&');
-    
+
     return this._HttpClient.get(`${this.baseURL}/api/v1/products?limit=8&page=${pageNumber}&${query}`);
   }
 

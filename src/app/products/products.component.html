@@ -32,6 +32,7 @@
 
   <ng-template #content>
 
+    <h2 class="text-center"><span class="bg-main text-white fw-bold p-3 rounded-3 text-capitalize">{{filter}}</span> Products</h2>
     <div class="col-md-3" *ngFor="let product of allProducts | search:searchValue | paginate: { id: 'productsPagination',
     itemsPerPage: paginationData.limit,
     currentPage: paginationData.currentPage,
@@ -46,7 +47,7 @@
             <span><i class="fa-solid fa-star rating-color me-1"></i>{{product.ratingsAverage}}</span>
           </div>
         </div>
-        <button class="btn btn-main d-block w-100 mb-0">Add To Cart</button>
+        <button class="btn btn-main d-block w-100 mb-0" (click)="addToCart(product._id)">Add To Cart</button>
       </div>
     </div>
 
@@ -57,5 +58,6 @@
         screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
       </pagination-controls>
     </div>
+
   </ng-template>
 </div>

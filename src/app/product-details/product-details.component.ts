@@ -4,7 +4,8 @@ import { ProductsService } from '../services/products.service';
 import { ProductDetails } from '../interfaces/product-details';
 import { Title } from '@angular/platform-browser';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
+import { CartService } from '../services/cart.service';
+import { ToastEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 
 
 @Component({
@@ -18,7 +19,10 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private _ActivatedRoute: ActivatedRoute,
     private _ProductsService: ProductsService,
     private _Router: Router,
-    private _Title: Title) { }
+    private _Title: Title,
+    private _CartService: CartService,
+    private _ToastEvokeService: ToastEvokeService
+  ) { }
 
   ngOnInit(): void {
     this._ActivatedRoute.params.subscribe((route) => {
@@ -62,4 +66,15 @@ export class ProductDetailsComponent implements OnInit {
     nav: true
   }
 
+  addToCart(productId: string) {
+    this._CartService.addToCartReq(productId).subscribe({
+      next: (res) => {
+        this._ToastEvokeService.success('Success', res.message).subscribe();
+        this._CartService.cartItemsCount.next(res.numOfCartItems);
+      },
+      error: (err) => {
+        this._ToastEvokeService.danger('Error', err.message).subscribe();
+      }
+    })
+  }
 }

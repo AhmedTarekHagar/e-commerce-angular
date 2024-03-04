@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
 import { Category } from '../interfaces/category';
 import { Router } from '@angular/router';
+import { FilterService } from '../services/filter.service';
+
 
 @Component({
   selector: 'app-categories',
@@ -10,10 +12,10 @@ import { Router } from '@angular/router';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor(private _CategoriesService: CategoriesService, private _Router: Router) { }
+  constructor(private _CategoriesService: CategoriesService, private _Router: Router, private _FilterService:FilterService) { }
 
   ngOnInit(): void {
-    localStorage.setItem('lastPage', '/categories')    
+    localStorage.setItem('lastPage', '/categories')
 
     this._CategoriesService.getAllCategoriesReq().subscribe({
       next: (res) => {
@@ -27,4 +29,7 @@ export class CategoriesComponent implements OnInit {
 
   categories!: Category[];
 
+  setFilterValue(name: string): void {
+    this._FilterService.filterValue = name;
+  }
 }

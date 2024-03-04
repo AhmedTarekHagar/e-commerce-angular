@@ -3,8 +3,8 @@
     <a class="navbar-brand">
       <img src="../../assets/images/freshcart-logo.svg" routerLink="home">
     </a>
-    <button class="navbar-toggler focus-ring focus-ring-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler focus-ring focus-ring-success" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div [ngClass]="{'justify-content-between': isLoggedIn, 'justify-content-end': !isLoggedIn}"
@@ -29,8 +29,9 @@
 
 
       <div class="d-flex gap-3 align-items-center cursor-pointer" routerLink="cart">
-        <div>
+        <div class="position-relative">
           <img src="../../assets/images/cart.svg">
+          <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-main" *ngIf="!(cartItemsNumber == '0')">{{cartItemsNumber}}</span>
         </div>
         <a href="#" target="_blank" class="fa-brands fa-instagram text-decoration-none text-dark"></a>
         <a href="#" target="_blank" class="fa-brands fa-facebook text-decoration-none text-dark"></a>

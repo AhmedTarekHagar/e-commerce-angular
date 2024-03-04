@@ -1,8 +1,8 @@
 <section class="py-3">
     <h2 class="text-main text-uppercase fw-bolder text-center my-3">all categories</h2>
     <div class="row g-3">
-        <div class="col-md-3 cursor-pointer" *ngFor="let category of categories" [routerLink]="['/products']" [queryParams]="{'category[in]': category._id}">
-            <div class="inner product">
+        <div class="col-md-3" *ngFor="let category of categories" >
+            <div class="inner product cursor-pointer" (click)="setFilterValue(category.name)" [routerLink]="['/products']" [queryParams]="{'category[in]': category._id}">
                 <img height="350" class="w-100" [src]="category.image" [alt]="category.name">
                 <h2 class="text-main text-center h3 fw-bold py-2">{{category.name}}</h2>
             </div>

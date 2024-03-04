@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 
 @Component({
@@ -10,26 +11,35 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private _AuthenticationService:AuthenticationService, private _Router:Router){}
+  constructor(private _AuthenticationService: AuthenticationService, private _Router: Router, private _CartService: CartService) { }
 
   ngOnInit(): void {
-    
-    this._AuthenticationService.userInfo.subscribe(()=>{
-      if(this._AuthenticationService.userInfo.getValue() == null){
+
+    this._AuthenticationService.userInfo.subscribe(() => {
+      if (this._AuthenticationService.userInfo.getValue() == null) {
         this.isLoggedIn = false;
-      } else{
+      } else {
         this.isLoggedIn = true;
       }
     })
+    this._CartService.getLoggedUserAllCartItemsReq().subscribe({
+      next: (res) => {
+        this._CartService.cartItemsCount.next(res.numOfCartItems);
+      }
+    });
 
+
+    this._CartService.cartItemsCount.subscribe(() => {
+      this.cartItemsNumber = this._CartService.cartItemsCount.getValue()
+    });
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('userToken');
     this._AuthenticationService.handleUserInfo();
     this._Router.navigate(['/login'])
   }
 
-  isLoggedIn:boolean = false;
-
+  isLoggedIn: boolean = false;
+  cartItemsNumber: string = '';
 }

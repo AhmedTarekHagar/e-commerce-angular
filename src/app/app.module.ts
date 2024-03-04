@@ -19,10 +19,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TimedOutComponent } from './timed-out/timed-out.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SearchPipe } from './pipes/search.pipe';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import {
+  NgxAwesomePopupModule,
+  DialogConfigModule,
+  ConfirmBoxConfigModule,
+  ToastNotificationConfigModule
+} from '@costlydeveloper/ngx-awesome-popup';
 
 @NgModule({
   declarations: [
@@ -50,7 +56,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserAnimationsModule,
     CarouselModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxAwesomePopupModule.forRoot(), // Essential, mandatory main module.
+    DialogConfigModule.forRoot(), // Needed for instantiating dynamic components.
+    ConfirmBoxConfigModule.forRoot(), // Needed for instantiating confirm boxes.
+    ToastNotificationConfigModule.forRoot() // Needed for instantiating toast notifications.
   ],
   providers: [],
   bootstrap: [AppComponent]

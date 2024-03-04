@@ -68,11 +68,11 @@ import { OrdersComponent } from './orders/orders.component';
     ToastNotificationConfigModule.forRoot() // Needed for instantiating toast notifications.
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AddHeaderInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AddHeaderInterceptor,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

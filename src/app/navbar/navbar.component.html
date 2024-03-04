@@ -31,8 +31,8 @@
       </ul>
 
 
-      <div class="d-flex gap-3 align-items-center cursor-pointer" routerLink="cart">
-        <div class="position-relative">
+      <div class="d-flex gap-3 align-items-center cursor-pointer" >
+        <div class="position-relative" routerLink="cart" *ngIf="isLoggedIn">
           <img src="../../assets/images/cart.svg">
           <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-main" *ngIf="!(cartItemsNumber == '0')">{{cartItemsNumber}}</span>
         </div>
